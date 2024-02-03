@@ -14,14 +14,13 @@ export class AppController {
 
   @Post()
   async create(@Body() body: CreateNotificationBody) {
-    console.log(body);
-
+    const { recipientId, content, category } = body;
     await this.prisma.notification.create({
       data: {
         id: randomUUID(),
-        content: 'Nova solicitação de amizade',
-        category: '',
-        recipientId: randomUUID(),
+        content,
+        category,
+        recipientId,
       },
     });
   }
